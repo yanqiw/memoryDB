@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>Memory DB test</title>
+
+  <script type="text/javascript" src="memoryDB.js">
+  	
+  </script>
+
+  <script  type="text/javascript" >
+  // recursive object compare, for future use
+  var book = new MDBtable([
+  {
+  	name:"Frank's note",
+	publishDate: "2013/02/03",
+  },
+    {
+  	name:"Yuki's note",
+	publishDate: "2012/12/23",
+  },
+    {
+  	name:"Fight for Win",
+	publishDate: "1993/05/04",
+  },
+    {
+  	name:"PHP manul book",
+	publishDate: "2002/02/13",
+  }
+  ]
+  );
+  
+  for(var i=0; i <= 1000;i++){
+  	book.insert({
+		name:"foo" + i%500,
+		editor:"bar" + i%44,
+		ob:{
+			foo1: i,
+		},
+		publishDate:new Date().toString(),
+	})
+  }
+  book.insert({
+  	name:"The loader of Rang",
+	publishDate:"1992/06/07",
+  })
+  
+  var foo1 = book.query({name:"foo1",editor:"bar1"});
+  console.log(book.table);
+  console.log(book.counter);
+  console.log(foo1);
+  </script>
+</head>
+<body>
+<div>
+Please open your javascript console to see test results
+</div>
+</body>
+</html>
