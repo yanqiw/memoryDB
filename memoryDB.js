@@ -1,3 +1,4 @@
+//version 0.0.3
 var memorydb = (function() {
 	var mdb = {};
 	var _tables = {};
