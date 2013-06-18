@@ -4,17 +4,18 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Memory DB test</title>
 
-		<script type="text/javascript" src="memoryDB.js"></script>
 		<script type="text/javascript" src="memoryDB_IIFE.js"></script>
 		<script  type="text/javascript" >
-		
+
+			
+			
 			memorydb.newTable("book");
 			memorydb.newTable("bookshelf");
 		
-			for (var i = 0; i <= 1000; i++) {
+			for (var i = 0; i <= 100; i++) {
 				memorydb.book.insert({
-					name : "foo" + i % 500,
-					editor : "bar" + i % 44,
+					name : "foo" + i % 20,
+					editor : "bar" + i % 25,
 					index : {
 						foo1 : i,
 					},
@@ -37,12 +38,34 @@
 				editor : "bar1"
 			});
 			
+			console.log('memorydb.book.getAll()>>');
 			console.log(memorydb.book.getAll());
+			console.log('memorydb.book.getCounter()>>');
 			console.log(memorydb.book.getCounter());
+			console.log('foo1>>');
 			console.log(foo1);
 			
+			console.log('memorydb.bookshelf.getAll()>>');
 			console.log(memorydb.bookshelf.getAll());
+			console.log('memorydb.bookshelf.getCounter()>>');
 			console.log(memorydb.bookshelf.getCounter());
+			console.log('memorydb.book.query({$in:{editor:["bar1", "bar2"]}})>>');
+			console.log(memorydb.book.query({$in:{editor:["bar1", "bar2"]}}));
+			console.log('memorydb.book.query({$or:{$and:{editor:"bar2",name:"foo2"}, $or:{editor:"bar3",name:"foo14"}}})>>');
+			console.log(memorydb.book.query({$or:{$and:{editor:"bar2",name:"foo2"}, $or:{editor:"bar3",name:"foo14"}}}));
+			console.log('memorydb.book.query({$or:{$and:{editor:"bar2",name:"foo2"}, $not:{editor:"bar3"}}})>>');
+			console.log(memorydb.book.query({$or:{$and:{editor:"bar2",name:"foo2"}, $not:{editor:"bar3"}}}));
+			console.log('memorydb.book.query({$or:{$and:{editor:"bar2",name:"foo2"}, editor:"bar3"}})>>');
+			console.log(memorydb.book.query({$or:{$and:{editor:"bar2",name:"foo2"}, editor:"bar3"}}));
+			console.log('memorydb.book.query({$or:{editor:"bar2",name:"foo2"}})>>');
+			console.log(memorydb.book.query({$or:{editor:"bar2",name:"foo2"}}));
+			console.log('memorydb.book.query({$not:{editor:"bar2",name:"foos2"}})>>');
+			console.log(memorydb.book.query({$not:{editor:"bar2",name:"foos2"}}));
+			console.log('memorydb.book.query({$and:{editor:"bar2",name:"foo2"}})>>');
+			console.log(memorydb.book.query({$and:{editor:"bar2",name:"foo2"}}));
+			console.log('memorydb.book.query({$or:{editor:"bar20",name:"foo2"}})>>');
+			console.log(memorydb.book.query({$or:{editor:"bar20",name:"foo2"}}));
+
 			
 		</script>
 	</head>
